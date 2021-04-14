@@ -17,5 +17,4 @@ class BATTLECPP_API UCruiserShip: public UMasterShip
 	
 public:
 	UCruiserShip();
-	~UCruiserShip();
 };

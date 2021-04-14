@@ -11,6 +11,3 @@ UCarrierShip::UCarrierShip()
 	Length = 5;
 }
 
-UCarrierShip::~UCarrierShip()
-{
-}

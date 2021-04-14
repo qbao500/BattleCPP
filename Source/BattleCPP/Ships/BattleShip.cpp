@@ -11,6 +11,3 @@ UBattleShip::UBattleShip()
 	Length = 4;
 }
 
-UBattleShip::~UBattleShip()
-{
-}

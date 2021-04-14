@@ -18,5 +18,4 @@ class BATTLECPP_API UCarrierShip: public UMasterShip
 	
 public:
 	UCarrierShip();
-	~UCarrierShip();
 };

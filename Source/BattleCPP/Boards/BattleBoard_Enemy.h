@@ -6,9 +6,8 @@
 #include "BattleBoard.h"
 #include "BattleBoard_Enemy.generated.h"
 
-/**
- * 
- */
+class ABattleBoard_Player;
+
 UCLASS()
 class BATTLECPP_API ABattleBoard_Enemy : public ABattleBoard
 {
@@ -20,7 +19,7 @@ public:
 		bIsPlayer = false;
 	}
 
-	void EnemyAttack(class ABattleBoard_Player* PlayerRef);
+	void EnemyAttack(ABattleBoard_Player* PlayerRef);
 
 private:
 	UPROPERTY(VisibleInstanceOnly)
@@ -48,18 +47,21 @@ private:
 	TArray<APlaneTile*> PossibleTiles;
 
 	UFUNCTION()
-	void RandomAttack(class ABattleBoard_Player* PlayerRef);
+	void RandomAttack(ABattleBoard_Player* PlayerRef);
 
 	UFUNCTION()
-	void SearchingAttack(class ABattleBoard_Player* PlayerRef);
+	void SearchingAttack(ABattleBoard_Player* PlayerRef);
 
 	UFUNCTION()
-    void ForwardAttack(class ABattleBoard_Player* PlayerRef);
+    void ForwardAttack(ABattleBoard_Player* PlayerRef);
 	
 	UFUNCTION()
-	void AddPossibleTiles(class ABattleBoard_Player* PlayerRef);
+	void AddPossibleTiles(ABattleBoard_Player* PlayerRef);
 
 	UFUNCTION()
 	void CheckValidTile(APlaneTile* TileToCheck);
+
+	UFUNCTION()
+	void ChangeState(bool bShouldGoSearch); 
 };
 

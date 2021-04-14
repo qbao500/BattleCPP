@@ -47,9 +47,8 @@ void ABattleCPPGameModeBase::GameEnded()
 	SetPause(Controller);
 
 	// Re-check who win
+	if (PlayerRef->ShipAmount <= 0) bIsPlayerWon = false;
 	if (EnemyRef->ShipAmount <= 0) bIsPlayerWon = true;
-	else if (PlayerRef->ShipAmount <= 0) bIsPlayerWon = false;
 
-	auto Widget = CreateWidget<UUserWidget>(GetWorld(), GameOverWidgetClass);
-	Widget->AddToViewport();
+	CreateWidget<UUserWidget>(GetWorld(), GameOverWidgetClass)->AddToViewport();
 }

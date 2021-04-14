@@ -10,7 +10,3 @@ UCruiserShip::UCruiserShip()
 	TileType = ETileType::Cruiser;
 	Length = 3;
 }
-
-UCruiserShip::~UCruiserShip()
-{
-}

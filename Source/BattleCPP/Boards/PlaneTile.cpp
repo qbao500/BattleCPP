@@ -30,8 +30,6 @@ void APlaneTile::BeginPlay()
 	PlaneMesh->OnBeginCursorOver.AddDynamic(this, &APlaneTile::MouseHoverBegin);
 	PlaneMesh->OnEndCursorOver.AddDynamic(this, &APlaneTile::MouseHoverEnd);
 	PlaneMesh->OnReleased.AddDynamic(this, &APlaneTile::MouseReleased);
-	
-	TileType = ETileType::Free;
 }
 
 void APlaneTile::MouseHoverBegin(UPrimitiveComponent* TouchedComponent)

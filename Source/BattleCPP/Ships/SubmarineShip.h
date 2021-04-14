@@ -17,5 +17,4 @@ class BATTLECPP_API USubmarineShip: public UMasterShip
 	
 public:
 	USubmarineShip();
-	~USubmarineShip();
 };

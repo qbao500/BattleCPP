@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "BattleBoard_Enemy.h"
 #include "BattleBoard_Player.h"
 #include "../Ships/UMasterShip.h"
@@ -28,7 +27,7 @@ void ABattleBoard_Enemy::RandomAttack(ABattleBoard_Player* PlayerRef)
 	AttackColumn = FMath::RandRange(0, PlayerRef->BoardColumn - 1);
 	PickedTile = PlayerRef->Tiles[AttackRow][AttackColumn];
 
-	// If the tile cant be shot
+	// If the tile cant be shot, find other place
 	if (!PickedTile->CanBeShot())
 	{
 		RandomAttack(PlayerRef);
@@ -46,12 +45,13 @@ void ABattleBoard_Enemy::RandomAttack(ABattleBoard_Player* PlayerRef)
 
 void ABattleBoard_Enemy::SearchingAttack(ABattleBoard_Player* PlayerRef)
 {
+	// Search neighbors only when entering from RandomAttack
 	if (bShouldSearchNew) AddPossibleTiles(PlayerRef);
 	
 	// If no neighbor tile can be attacked, switch to RandomAttack
 	if (PossibleTiles.Num() == 0)
 	{
-		bIsSearching = false;
+		ChangeState(false);
 		RandomAttack(PlayerRef);
 		return;
 	}
@@ -65,8 +65,7 @@ void ABattleBoard_Enemy::SearchingAttack(ABattleBoard_Player* PlayerRef)
 		// If ship is destroyed, return to RandomAttack
 		if (PickedTile->CurrentShip->IsDestroyed())
 		{
-			bIsSearching = false;
-			AttackDirection = FVector2D(0, 0);
+			ChangeState(false);
 			return;
 		}
 
@@ -94,22 +93,22 @@ void ABattleBoard_Enemy::ForwardAttack(ABattleBoard_Player* PlayerRef)
 	int32 PickedColumn = LastHitTile->Coordinate.Column + AttackDirection.X;
 
 	// If exceed size
-	if (PickedRow < 0 || PickedRow >= BoardRow || PickedColumn < 0 || PickedColumn >= BoardColumn)
+	if (PickedRow < 0 || PickedRow >= PlayerRef->BoardRow || PickedColumn < 0 || PickedColumn >= PlayerRef->BoardColumn)
 	{
 		// Search again
-		AttackDirection = FVector2D(0, 0);
-		bIsSearching = true;
+		ChangeState(true);
 		SearchingAttack(PlayerRef);
 		return;
 	}
-	
+
+	// Pick next tile
 	PickedTile = PlayerRef->Tiles[PickedRow][PickedColumn];
 
+	// If next tile cant be shot
 	if (!PickedTile->CanBeShot())
 	{
 		// Search again
-		AttackDirection = FVector2D(0, 0);
-		bIsSearching = true;
+		ChangeState(true);
 		SearchingAttack(PlayerRef);
 		return;
 	}
@@ -122,16 +121,14 @@ void ABattleBoard_Enemy::ForwardAttack(ABattleBoard_Player* PlayerRef)
 		// If ship is destroyed, return to RandomAttack
 		if (PickedTile->CurrentShip->IsDestroyed())
 		{
-			bIsSearching = false;
-			AttackDirection = FVector2D(0, 0);
+			ChangeState(false);
 			PossibleTiles.Empty();
 		}
 	}
 	else
 	{
 		// If not hit, return to searching
-		AttackDirection = FVector2D(0, 0);
-		bIsSearching = true;
+		ChangeState(true);
 	}
 }
 
@@ -157,7 +154,7 @@ void ABattleBoard_Enemy::AddPossibleTiles(ABattleBoard_Player* PlayerRef)
 		CheckValidTile(TempTile);
 	}		
 	// Down
-	if (PossibleRow + 1 <= BoardRow - 1)
+	if (PossibleRow + 1 <= PlayerRef->BoardRow - 1)
 	{
 		TempTile = PlayerRef->Tiles[PossibleRow + 1][PossibleColumn];
 		PossibleTiles.AddUnique(TempTile);
@@ -171,7 +168,7 @@ void ABattleBoard_Enemy::AddPossibleTiles(ABattleBoard_Player* PlayerRef)
 		CheckValidTile(TempTile);
 	}
 	// Right
-	if (PossibleColumn + 1 <= BoardColumn - 1)
+	if (PossibleColumn + 1 <= PlayerRef->BoardColumn - 1)
 	{
 		TempTile = PlayerRef->Tiles[PossibleRow][PossibleColumn + 1];
 		PossibleTiles.AddUnique(TempTile);
@@ -185,4 +182,10 @@ void ABattleBoard_Enemy::CheckValidTile(APlaneTile* TileToCheck)
 	{
 		PossibleTiles.Remove(TileToCheck);
 	}
+}
+
+void ABattleBoard_Enemy::ChangeState(bool bShouldGoSearch)
+{
+	bIsSearching = bShouldGoSearch;
+	AttackDirection = FVector2D(0, 0);
 }

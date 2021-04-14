@@ -17,5 +17,4 @@ class BATTLECPP_API UDestroyerShip: public UMasterShip
 	
 public:
 	UDestroyerShip();
-	~UDestroyerShip();
 };

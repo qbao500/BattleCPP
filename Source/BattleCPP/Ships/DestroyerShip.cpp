@@ -10,7 +10,3 @@ UDestroyerShip::UDestroyerShip()
 	TileType = ETileType::Destroyer;
 	Length = 2;
 }
-
-UDestroyerShip::~UDestroyerShip()
-{
-}

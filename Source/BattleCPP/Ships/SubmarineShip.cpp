@@ -10,7 +10,3 @@ USubmarineShip::USubmarineShip()
 	TileType = ETileType::Submarine;
 	Length = 3;
 }
-
-USubmarineShip::~USubmarineShip()
-{
-}
