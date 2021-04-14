@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-#include "BattleBoard.h"
+#include "Boards/BattleBoard.h"
 #include "GameFramework/GameModeBase.h"
 #include "BattleCPPGameModeBase.generated.h"
 

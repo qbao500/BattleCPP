@@ -3,8 +3,8 @@
 
 #include "BattleCPPGameModeBase.h"
 
-#include "BattleBoard_Player.h"
-#include "BattleBoard_Enemy.h"
+#include "Boards/BattleBoard_Player.h"
+#include "Boards/BattleBoard_Enemy.h"
 #include "Blueprint/UserWidget.h"
 #include "Kismet/GameplayStatics.h"
 

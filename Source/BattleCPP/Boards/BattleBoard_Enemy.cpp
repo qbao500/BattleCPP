@@ -3,6 +3,7 @@
 
 #include "BattleBoard_Enemy.h"
 #include "BattleBoard_Player.h"
+#include "../Ships/UMasterShip.h"
 
 void ABattleBoard_Enemy::EnemyAttack(ABattleBoard_Player* PlayerRef)
 {

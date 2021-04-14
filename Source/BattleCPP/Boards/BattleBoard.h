@@ -3,11 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UMasterShip.h"
 #include "PlaneTile.h"
-#include "Tiles2DArray.h"
+#include "../Structs/Tiles2DArray.h"
 #include "GameFramework/Actor.h"
 #include "BattleBoard.generated.h"
+
+class UMasterShip;
 
 UCLASS()
 class BATTLECPP_API ABattleBoard : public AActor

@@ -3,12 +3,12 @@
 
 #include "BattleBoard.h"
 
-#include "BattleCPPGameModeBase.h"
-#include "BattleShip.h"
-#include "CarrierShip.h"
-#include "CruiserShip.h"
-#include "DestroyerShip.h"
-#include "SubmarineShip.h"
+#include "../BattleCPPGameModeBase.h"
+#include "../Ships/BattleShip.h"
+#include "../Ships/CarrierShip.h"
+#include "../Ships/CruiserShip.h"
+#include "../Ships/DestroyerShip.h"
+#include "../Ships/SubmarineShip.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values

@@ -3,7 +3,7 @@
 
 #include "BattleShip.h"
 
-#include "TileTypeEnum.h"
+#include "../Enums/TileTypeEnum.h"
 
 UBattleShip::UBattleShip()
 {

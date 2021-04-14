@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "PlaneTile.h"
+#include "../Boards/PlaneTile.h"
 #include "Tiles2DArray.generated.h"
 
 USTRUCT(BlueprintType)

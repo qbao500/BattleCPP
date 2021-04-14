@@ -5,8 +5,8 @@
 
 
 #include "BattleBoard.h"
-#include "BattleCPPGameModeBase.h"
-#include "UMasterShip.h"
+#include "../BattleCPPGameModeBase.h"
+#include "../Ships/UMasterShip.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values

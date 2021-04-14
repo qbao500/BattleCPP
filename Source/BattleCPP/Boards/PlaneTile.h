@@ -4,8 +4,8 @@
 
 #include "CoreMinimal.h"
 
-#include "CoordinateStruct.h"
-#include "TileTypeEnum.h"
+#include "../Structs/CoordinateStruct.h"
+#include "../Enums/TileTypeEnum.h"
 #include "GameFramework/Actor.h"
 #include "PlaneTile.generated.h"
 
